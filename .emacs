@@ -114,7 +114,8 @@
 
 ;;;;;;;;;;;;;;;; 'Include' directories ;;;;;;;;;;;;;;;;;;;
 (setq load-path (cons "~/.emacs.d/" load-path))
-(load-file "~/.emacs.d/cedet/common/cedet.el")
+(setq load-path (cons "~/.emacs.d/cedet/lisp/cedet/" load-path))
+(load-file "~/.emacs.d/cedet/lisp/cedet/cedet.el")
 ;(load "~/.emacs.d/haskell-mode-2.8.0/haskell-site-file")
 (setq exec-path (cons "/opt/local/bin" exec-path))
 (setq exec-path (cons "~/local/bin" exec-path))
