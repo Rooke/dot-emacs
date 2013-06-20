@@ -130,8 +130,6 @@
 ;;go stuff
 (require 'go-mode-load)
 ;;git
-(add-to-list 'load-path "~/.emacs.d/git/" t)
-(load-file "~/.emacs.d/git/git.el")
 (require 'git)
 ;; cscope
 (require 'xcscope)
@@ -142,11 +140,11 @@
 (add-hook 'c-mode-hook 'turn-on-filladapt-mode)
 ;; cedet
 (require 'ecb)
-(global-ede-mode 1)                      ; Enable the Project management system
-(semantic-load-enable-gaudy-code-helpers)      ; Enable prototype help and smart completion 
-(global-srecode-minor-mode 1)            ; Enable template insertion menu
+;(global-ede-mode 1)                      ; Enable the Project management system
+;(semantic-load-enable-gaudy-code-helpers)      ; Enable prototype help and smart completion 
+;(global-srecode-minor-mode 1)            ; Enable template insertion menu
 ;(semantic-load-enable-minimum-features)
-(global-set-key (kbd "C-<tab>") `semantic-symref-symbol)
+;(global-set-key (kbd "C-<tab>") `semantic-symref-symbol)
 
 ;Haskell
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
@@ -159,10 +157,14 @@
 (add-to-list 'load-path (concat rsense-home "/etc"))
 (require 'rsense)
 
+;Popup
+(add-to-list 'load-path "~/.emacs.d/popup-el/")
+(require 'popup)
+
 ;Autocomplete
-(add-to-list 'load-path "~/.emacs.d/")
+(add-to-list 'load-path "~/.emacs.d/auto-complete/")
 (require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/")
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/dict/")
 (ac-config-default)
 
 ;Web Browswer
