@@ -13,9 +13,7 @@
 
 ;;;;;;;;;;;;;;;;; Grep mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;(grep-compute-defaults)
-;old
-;(setq grep-find-command "find . ! -name \"cscope.out\" ! -name \"*~\" ! -name \"^.#\" -type f -print0 | xargs -0 -E grep -nH -e ")
-(setq grep-find-command "find . ! -name \"cscope.out\" ! -name \"*~\" ! -name \"^.#\" -type f -print0 | xargs -0 grep -nH -e ")
+(setq grep-find-command "find . ! -name \"cscope.out\" ! -name \"*~\" ! -name \"^.#\" -type f -print0 | xargs -0 grep -niH -e ")
 
 
 ;;;;;;;;;;;;;;;;; Set colours ;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -115,34 +113,29 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;; 'Include' directories ;;;;;;;;;;;;;;;;;;;
-(setq load-path (cons "~/local/site-lisp" load-path))
-;(setq load-path (cons "~/.emacs.d/cscope-15.7a/contrib/xcscope/" load-path))
+(setq load-path (cons "~/.emacs.d/" load-path))
+(load-file "~/.emacs.d/cedet/common/cedet.el")
 ;(load "~/.emacs.d/haskell-mode-2.8.0/haskell-site-file")
 (setq exec-path (cons "/opt/local/bin" exec-path))
 (setq exec-path (cons "~/local/bin" exec-path))
-(load-file "~/ExternCode/cedet-1.1/common/cedet.el")
-;(add-to-list 'load-path
-;	     "~/.emacs.d/ecb-snap")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
 ;;;;;;;;;;;;;;;;;;; External Add-ons ;;;;;;;;;;;;;;;;;;;;;
 ;purcell emacs.d
-(load-file "~/.emacs.d/init.el")
+;(load-file "~/.emacs.d/init.el")
 
 ;;go stuff
-;(add-to-list 'load-path "~/ExternCode/go/misc/emacs/" t)
-;(require 'go-mode-load)
+(require 'go-mode-load)
 ;;git
-;(add-to-list 'load-path "~/ExternCode/git/contrib/emacs/" t)
-;;(load-file "~/ExternCode/git/contrib/emacs/git.el")
+(add-to-list 'load-path "~/.emacs.d/git/" t)
+(load-file "~/.emacs.d/git/git.el")
 (require 'git)
 ;; cscope
 (require 'xcscope)
 (setq cscope-display-cscope-buffer nil)
 ;; filladapt
-(load-file "~/.emacs.d/filladapt.el")
 (require 'filladapt)
 (setq-default filladapt-mode t)
 (add-hook 'c-mode-hook 'turn-on-filladapt-mode)
@@ -161,14 +154,14 @@
 ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
 
 ;Ruby
-(setq rsense-home "~/ExternCode/rsense-0.2")
+(setq rsense-home "~/.emacs.d/rsense")
 (add-to-list 'load-path (concat rsense-home "/etc"))
 (require 'rsense)
 
 ;Autocomplete
 (add-to-list 'load-path "~/.emacs.d/")
 (require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d//ac-dict")
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/")
 (ac-config-default)
 
 ;Web Browswer
@@ -187,3 +180,6 @@
 
 ;Scheme
 (setq scheme-program-name "snow")
+
+;TRAMP
+(setq tramp-default-method "ssh")
