@@ -186,3 +186,10 @@
 
 ;TRAMP
 (setq tramp-default-method "ssh")
+
+;Erlang
+(setq load-path (cons "~/.emacs.d/erlang-otp/lib/tools/emacs/"
+                      load-path))
+(setq erlang-root-dir "~/.emacs.d/erlang-otp/")
+(setq exec-path (cons "~/.emacs.d/erlang-otp/bin" exec-path))
+(require 'erlang-start)

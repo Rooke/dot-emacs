@@ -10,6 +10,7 @@ git clone https://github.com/auto-complete/popup-el ~/.emacs.d/popup-el
 git clone https://github.com/emacsmirror/cedet ~/.emacs.d/cedet
 git clone https://github.com/emacsmirror/cscope ~/.emacs.d/cscope
 git clone https://github.com/emacsmirror/haskell-mode ~/.emacs.d/haskell-mode
+git clone https://github.com/erlang/otp erlang-otp
 git clone https://github.com/auto-complete/auto-complete.git ~/.emacs.d/auto-complete
 sudo apt-get install w3m-el cscope-el ecb
 
