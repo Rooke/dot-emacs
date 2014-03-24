@@ -187,7 +187,6 @@
 ;TRAMP
 (setq tramp-default-method "ssh")
 
-<<<<<<< HEAD
 ;Bash-completion
 (autoload 'bash-completion-dynamic-complete 
   "bash-completion"
@@ -196,11 +195,10 @@
   'bash-completion-dynamic-complete)
 (add-hook 'shell-command-complete-functions
   'bash-completion-dynamic-complete)
-=======
+
 ;Erlang
 (setq load-path (cons "~/.emacs.d/erlang-otp/lib/tools/emacs/"
                       load-path))
 (setq erlang-root-dir "~/.emacs.d/erlang-otp/")
 (setq exec-path (cons "~/.emacs.d/erlang-otp/bin" exec-path))
 (require 'erlang-start)
->>>>>>> e64425593be25844ed4336c5fb0b12c8469006d2
