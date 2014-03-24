@@ -8,5 +8,6 @@ git clone https://github.com/emacsmirror/cedet ~/.emacs.d/cedet
 git clone https://github.com/emacsmirror/cscope ~/.emacs.d/cscope
 git clone https://github.com/emacsmirror/haskell-mode ~/.emacs.d/haskell-mode
 git clone https://github.com/git/git/tree/master/contrib/emacs ~/.emacs.d/git
+git clone https://github.com/szermatt/emacs-bash-completion.git ~/.emacs.d/
 git clone https://github.com/auto-complete/auto-complete.git ~/.emacs.d/auto-complete
 sudo apt-get install w3m-el
