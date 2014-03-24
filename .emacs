@@ -114,7 +114,8 @@
 
 ;;;;;;;;;;;;;;;; 'Include' directories ;;;;;;;;;;;;;;;;;;;
 (setq load-path (cons "~/.emacs.d/" load-path))
-(load-file "~/.emacs.d/cedet/common/cedet.el")
+(setq load-path (cons "~/.emacs.d/cedet/lisp/cedet/" load-path))
+(load-file "~/.emacs.d/cedet/lisp/cedet/cedet.el")
 ;(load "~/.emacs.d/haskell-mode-2.8.0/haskell-site-file")
 (setq exec-path (cons "/opt/local/bin" exec-path))
 (setq exec-path (cons "~/local/bin" exec-path))
@@ -129,8 +130,6 @@
 ;;go stuff
 (require 'go-mode-load)
 ;;git
-(add-to-list 'load-path "~/.emacs.d/git/" t)
-(load-file "~/.emacs.d/git/git.el")
 (require 'git)
 ;; cscope
 (require 'xcscope)
@@ -141,11 +140,11 @@
 (add-hook 'c-mode-hook 'turn-on-filladapt-mode)
 ;; cedet
 (require 'ecb)
-(global-ede-mode 1)                      ; Enable the Project management system
-(semantic-load-enable-gaudy-code-helpers)      ; Enable prototype help and smart completion 
-(global-srecode-minor-mode 1)            ; Enable template insertion menu
+;(global-ede-mode 1)                      ; Enable the Project management system
+;(semantic-load-enable-gaudy-code-helpers)      ; Enable prototype help and smart completion 
+;(global-srecode-minor-mode 1)            ; Enable template insertion menu
 ;(semantic-load-enable-minimum-features)
-(global-set-key (kbd "C-<tab>") `semantic-symref-symbol)
+;(global-set-key (kbd "C-<tab>") `semantic-symref-symbol)
 
 ;Haskell
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
@@ -158,10 +157,14 @@
 (add-to-list 'load-path (concat rsense-home "/etc"))
 (require 'rsense)
 
+;Popup
+(add-to-list 'load-path "~/.emacs.d/popup-el/")
+(require 'popup)
+
 ;Autocomplete
-(add-to-list 'load-path "~/.emacs.d/")
+(add-to-list 'load-path "~/.emacs.d/auto-complete/")
 (require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/")
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/dict/")
 (ac-config-default)
 
 ;Web Browswer
@@ -184,6 +187,7 @@
 ;TRAMP
 (setq tramp-default-method "ssh")
 
+<<<<<<< HEAD
 ;Bash-completion
 (autoload 'bash-completion-dynamic-complete 
   "bash-completion"
@@ -192,3 +196,11 @@
   'bash-completion-dynamic-complete)
 (add-hook 'shell-command-complete-functions
   'bash-completion-dynamic-complete)
+=======
+;Erlang
+(setq load-path (cons "~/.emacs.d/erlang-otp/lib/tools/emacs/"
+                      load-path))
+(setq erlang-root-dir "~/.emacs.d/erlang-otp/")
+(setq exec-path (cons "~/.emacs.d/erlang-otp/bin" exec-path))
+(require 'erlang-start)
+>>>>>>> e64425593be25844ed4336c5fb0b12c8469006d2
