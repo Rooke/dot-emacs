@@ -76,6 +76,7 @@
 (column-number-mode t)
 (setq hscroll-step 1)
 (setq scroll-conservatively 50)
+(set-window-fringes nil 0 0)
 
  ;;;;;;;;;; Key re-mappings ;;;;;;;;;;;;;;;;;
 
@@ -115,10 +116,10 @@
 ;Set tabs to display as 4 spaces:
 (setq-default tab-width 4)
 
- (defun my-c-indent-setup()
-   (setq c-basic-offset 4)
-   (setq c-indent-level 4)
-   (setq inden-tabs-mode nil))
+(defun my-c-indent-setup()
+  (setq c-basic-offset 4)
+  (setq c-indent-level 4)
+  (setq inden-tabs-mode nil))
 
  (defun my-awk-indent-setup()
    (setq awk-basic-offset 4)
@@ -137,3 +138,4 @@
 	
 (global-font-lock-mode nil)
 
+(require 'ensime)
