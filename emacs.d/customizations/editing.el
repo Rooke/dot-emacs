@@ -76,7 +76,8 @@
 (column-number-mode t)
 (setq hscroll-step 1)
 (setq scroll-conservatively 50)
-(set-window-fringes nil 0 0)
+(fringe-mode 0)
+
 
  ;;;;;;;;;; Key re-mappings ;;;;;;;;;;;;;;;;;
 
@@ -133,9 +134,11 @@
 ;JSON formatting
 (setq auto-mode-alist (cons '("\\.json\\'" . js-mode) auto-mode-alist))
 
-(setq font-lock-maximum-decoration 1)
-(setq font-lock-maximum-size 10000)
-	
-(global-font-lock-mode nil)
+; font-lock causes slowdowns with huge lines
+;(setq font-lock-maximum-decoration 1)
+;(setq font-lock-maximum-size 10000)
+;(global-font-lock-mode nil)
 
 (require 'ensime)
+
+
