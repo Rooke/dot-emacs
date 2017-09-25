@@ -24,8 +24,8 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-(unless (package-installed-p 'scala-mode2)
-  (package-refresh-contents) (package-install 'scala-mode2))
+(unless (package-installed-p 'scala-mode)
+  (package-refresh-contents) (package-install 'scala-mode))
 (unless (package-installed-p 'sbt-mode)
   (package-refresh-contents) (package-install 'sbt-mode))
 
@@ -145,3 +145,18 @@
 
 ;; R indentation and no-wait
 (load "ess-indent.el")
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(coffee-tab-width 2)
+ '(package-selected-packages
+   (quote
+    (paredit-everywhere discover-clj-refactor tagedit clj-refactor magit projectile ess smex ido-ubiquitous cider clojure-mode-extra-font-locking clojure-mode exec-path-from-shell sbt-mode scala-mode))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
