@@ -11,6 +11,12 @@
 ;; Go straight to scratch buffer on startup
 (setq inhibit-startup-message t)
 
+(setq use-package-always-ensure t)
+
 ;;;;;;;;;;;;;;;;; Grep mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;(grep-compute-defaults)
-(setq grep-find-command "find . ! -name \"cscope.out\" ! -name \"*~\" ! -name \"^.#\" -type f -print0 | xargs -0 grep -niH -e ")
+(setq grep-find-command "find . ! -name \"cscope.out\" ! -name \"*~\" ! -name \"^.#\" -type f -print0 | xargs -0 grep -niIH -e ")
+(defun cc (port) (cider-connect "localhost" port))
+
+(custom-set-faces
+ '(default ((t (:stipple nil :background "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 150 :width normal :family "Inconsolata")))))

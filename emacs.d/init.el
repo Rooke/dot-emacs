@@ -5,12 +5,15 @@
 ;; Define package repositories
 (require 'package)
 
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
-
-;; (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-;;                          ("marmalade" . "http://marmalade-repo.org/packages/")
-;;                          ("melpa" . "http://melpa-stable.milkbox.net/packages/")))
+;;;;
+;;; Code:
+;;;;
+(setq
+ package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                    ("org" . "http://orgmode.org/elpa/")
+;                    ("melpa" . "http://melpa.org/packages/")
+                    ("melpa-stable" . "http://stable.melpa.org/packages/"))
+ package-archive-priorities '(("melpa-stable" . 1)))
 
 
 ;; Load and activate emacs packages. Do this first so that the
@@ -24,10 +27,14 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-(unless (package-installed-p 'scala-mode)
-  (package-refresh-contents) (package-install 'scala-mode))
-(unless (package-installed-p 'sbt-mode)
-  (package-refresh-contents) (package-install 'sbt-mode))
+
+;; Define he following variables to remove the compile-log warnings
+;; when defining ido-ubiquitous
+(defvar ido-cur-item nil)
+(defvar ido-default-item nil)
+(defvar ido-cur-list nil)
+(defvar predicate nil)
+(defvar inherit-input-method nil)
 
 ;; The packages you want installed. You can also install these
 ;; manually with M-x package-install
@@ -35,7 +42,7 @@
 (defvar my-packages
   '(;; makes handling lisp expressions much, much easier
     ;; Cheatsheet: http://www.emacswiki.org/emacs/PareditCheatsheet
-    ;paredit
+    paredit
 
     ;; key bindings and code colorization for Clojure
     ;; https://github.com/clojure-emacs/clojure-mode
@@ -51,27 +58,54 @@
     ;; allow ido usage in as many contexts as possible. see
     ;; customizations/navigation.el line 23 for a description
     ;; of ido
-    ido-ubiquitous
+    ;ido-ubiquitous
 
     ;; Enhances M-x to allow easier execution of commands. Provides
     ;; a filterable list of possible commands in the minibuffer
     ;; http://www.emacswiki.org/emacs/Smex
     smex
 
+    ;; CSV support
+    csv-mode
+
     ;; For R
     ess
+
+    ;; Scala
+    ;; "ENSIME brings Scala and Java IDE-like features to your favourite text editor"
+    scala-mode
+    sbt-mode
+    ensime
 
     ;; project navigation
     projectile
 
     ;; colorful parenthesis matching
-    ;;rainbow-delimiters
+    ;rainbow-delimiters
 
     ;; edit html tags like sexps
-    ;;tagedit
+    js2-mode
+    js2-closure
+    js2-highlight-vars
 
     ;; git integration
     magit
+
+    ;; w3m browser
+    w3m
+
+    ;; clojure auto-complete
+    ac-cider
+
+    ;; avy visible text
+    avy
+
+    ;; typesciprt packages
+    tss
+    tide
+
+    ;; Rust
+    rust-mode
     ))
 
 ;; On OS X, an Emacs instance started from the graphical user
@@ -115,13 +149,12 @@
 ;; Sets up exec-path-from-shell so that Emacs will use the correct
 ;; environment variables
 (add-to-list 'exec-path "/usr/local/bin")
-(add-to-list 'exec-path "/home/michael/dev/tng")
 
 (load "shell-integration.el")
 
 ;;p These customizations make it easier for you to navigate files,
 ;; switch buffers, and choose options from the minibuffer.
-;;(load "navigation.el")
+(load "navigation.el")
 
 ;; These customizations change the way emacs looks and disable/enable
 ;; some user interface elements
@@ -136,6 +169,9 @@
 ;; For editing lisps
 (load "elisp-editing.el")
 
+;; Scala
+(load "scala-editing.el")
+
 ;; Langauage-specific
 (load "setup-clojure.el")
 (load "setup-js.el")
@@ -145,6 +181,16 @@
 
 ;; R indentation and no-wait
 (load "ess-indent.el")
+
+;; Bash auto-complete
+(load "bash-completion.el")
+(require 'bash-completion)
+(bash-completion-setup)
+
+;; Eslint
+(add-hook 'after-init-hook #'global-flycheck-mode)
+(provide 'init)
+;;; init.el ends here
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -153,10 +199,11 @@
  '(coffee-tab-width 2)
  '(package-selected-packages
    (quote
-    (paredit-everywhere discover-clj-refactor tagedit clj-refactor magit projectile ess smex ido-ubiquitous cider clojure-mode-extra-font-locking clojure-mode exec-path-from-shell sbt-mode scala-mode))))
+    (cargo editorconfig-custom-majormode rust-mode w3m tss tide tagedit smex scala-mode2 rainbow-delimiters projectile paredit markdown-mode magit js2-highlight-vars js2-closure ido-ubiquitous ess ensime csv-mode clojure-mode-extra-font-locking avy adaptive-wrap ac-php-core ac-cider))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:stipple nil :background "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 150 :width normal :family "Inconsolata")))))
+

@@ -1,3 +1,14 @@
+;;; package --- Summary
+;;; Commentary:
+;;; goes here
+
+(require 'ensime)
+
+(setq
+ ensime-sbt-command "/home/michael/dev/tng/sbt"
+ sbt:program-name "/home/michael/dev/tng/sbt"
+ ensime-startup-notification nil)
+
 (add-hook 'sbt-mode-hook '(lambda ()
   ;; compilation-skip-threshold tells the compilation minor-mode
   ;; which type of compiler output can be skipped. 1 = skip info
@@ -24,3 +35,5 @@
 ))
 
 (global-set-key (kbd "M-'") 'next-error)
+
+

@@ -29,9 +29,6 @@
 ;; Cider
 ;;;;
 
-;; provides minibuffer documentation for the code you're typing into the repl
-(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
-
 ;; go right to the REPL buffer when it's finished connecting
 (setq cider-repl-pop-to-buffer-on-connect t)
 
@@ -45,8 +42,19 @@
 ;; Wrap when navigating history.
 (setq cider-repl-wrap-history t)
 
+;; Remove the cider repl startup message
+(setq cider-repl-display-help-banner nil)
+
 ;; enable paredit in your REPL
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
+
+; always pretty-print
+(setq cider-repl-use-pretty-printing t)
+
+; Run tests when loading a file with C-c C-k
+(setq cider-auto-test-mode 1)
+
+; Inject some specific dependencies to lein
 
 ;; Use clojure mode for other extensions
 (add-to-list 'auto-mode-alist '("\\.edn$" . clojure-mode))
@@ -80,3 +88,12 @@
      (define-key clojure-mode-map (kbd "C-M-r") 'cider-refresh)
      (define-key clojure-mode-map (kbd "C-c u") 'cider-user-ns)
      (define-key cider-mode-map (kbd "C-c u") 'cider-user-ns)))
+
+(require 'ac-cider)
+(add-hook 'cider-mode-hook 'ac-flyspell-workaround)
+(add-hook 'cider-mode-hook 'ac-cider-setup)
+(add-hook 'cider-repl-mode-hook 'ac-cider-setup)
+(eval-after-load "auto-complete"
+  '(progn
+     (add-to-list 'ac-modes 'cider-mode)
+     (add-to-list 'ac-modes 'cider-repl-mode)))

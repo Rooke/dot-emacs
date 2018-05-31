@@ -1,4 +1,6 @@
-;; Customizations relating to editing a buffer.
+;; editing.el --- Customizations relating to editing a buffer.
+;;;; Commentary:
+;; These are misc. changes to how Emacs behaves. Likely needs some TLC
 
 ;; Key binding to use "hippie expand" for text autocompletion
 ;; http://www.emacswiki.org/emacs/HippieExpand
@@ -76,7 +78,8 @@
 (column-number-mode t)
 (setq hscroll-step 1)
 (setq scroll-conservatively 50)
-(fringe-mode 0)
+(fringe-mode 1)
+(setq sentence-end-double-space nil)
 
 
  ;;;;;;;;;; Key re-mappings ;;;;;;;;;;;;;;;;;
@@ -107,6 +110,13 @@
  (setq compilation-window-height 8)
 
 (setq outline-minor-mode-prefix "\C-o")
+
+;; Avy
+(global-set-key (kbd "C-:") 'avy-goto-char)
+(global-set-key (kbd "C-\"") 'avy-goto-char-2)
+(global-set-key (kbd "M-g f") 'avy-goto-line)
+(avy-setup-default)
+
 
 ; 'Universal' (x.org) clipboard
 (setq x-select-enable-clipboard t)
@@ -139,6 +149,4 @@
 ;(setq font-lock-maximum-size 10000)
 ;(global-font-lock-mode nil)
 
-(require 'ensime)
-
-
+;(require 'ensime)
