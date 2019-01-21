@@ -55,10 +55,12 @@
     ;; https://github.com/clojure-emacs/cider
     cider
 
+    clj-refactor
+
     ;; allow ido usage in as many contexts as possible. see
     ;; customizations/navigation.el line 23 for a description
     ;; of ido
-    ;ido-ubiquitous
+    ido-completing-read+
 
     ;; Enhances M-x to allow easier execution of commands. Provides
     ;; a filterable list of possible commands in the minibuffer
@@ -67,9 +69,6 @@
 
     ;; CSV support
     csv-mode
-
-    ;; For R
-    ess
 
     ;; Scala
     ;; "ENSIME brings Scala and Java IDE-like features to your favourite text editor"
@@ -84,15 +83,13 @@
     ;rainbow-delimiters
 
     ;; edit html tags like sexps
+    tagedit
     js2-mode
     js2-closure
     js2-highlight-vars
 
     ;; git integration
     magit
-
-    ;; w3m browser
-    w3m
 
     ;; clojure auto-complete
     ac-cider
@@ -106,6 +103,9 @@
 
     ;; Rust
     rust-mode
+
+    ;; Python
+    elpy
     ))
 
 ;; On OS X, an Emacs instance started from the graphical user
@@ -149,6 +149,7 @@
 ;; Sets up exec-path-from-shell so that Emacs will use the correct
 ;; environment variables
 (add-to-list 'exec-path "/usr/local/bin")
+(add-to-list 'exec-path "~/dev/tng")
 
 (load "shell-integration.el")
 
@@ -180,30 +181,12 @@
 (load "linum-off.el")
 
 ;; R indentation and no-wait
-(load "ess-indent.el")
+;(load "ess-indent.el")
 
-;; Bash auto-complete
-(load "bash-completion.el")
-(require 'bash-completion)
-(bash-completion-setup)
+;; Python
+(load "setup-python.el")
 
 ;; Eslint
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (provide 'init)
 ;;; init.el ends here
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(coffee-tab-width 2)
- '(package-selected-packages
-   (quote
-    (cargo editorconfig-custom-majormode rust-mode w3m tss tide tagedit smex scala-mode2 rainbow-delimiters projectile paredit markdown-mode magit js2-highlight-vars js2-closure ido-ubiquitous ess ensime csv-mode clojure-mode-extra-font-locking avy adaptive-wrap ac-php-core ac-cider))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:stipple nil :background "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 150 :width normal :family "Inconsolata")))))
-
