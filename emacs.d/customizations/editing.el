@@ -53,8 +53,6 @@
   (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
 ;(global-set-key (kbd "C-;") 'toggle-comment-on-line)
 
-;(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
-
 ;; use 2 spaces for tabs
 (defun die-tabs ()
   (interactive)
@@ -150,3 +148,16 @@
 ;(global-font-lock-mode nil)
 
 ;(require 'ensime)
+
+(setq-default bidi-display-reordering nil)
+
+(when (require 'so-long nil :noerror)
+  (so-long-enable))
+
+(when (require 'so-long nil :noerror)
+  (mapc (apply-partially 'add-to-list 'so-long-minor-modes)
+        '(hl-sexp-mode diff-hl-mode diff-hl-amend-mode diff-hl-flydiff-mode
+                       idle-highlight-mode rainbow-delimiters-mode grep-mode))
+  (so-long-enable))
+
+(global-set-key (kbd "TAB") #'company-indent-or-complete-common)

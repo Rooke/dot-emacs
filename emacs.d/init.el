@@ -12,7 +12,8 @@
  package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                     ("org" . "http://orgmode.org/elpa/")
 ;                    ("melpa" . "http://melpa.org/packages/")
-                    ("melpa-stable" . "http://stable.melpa.org/packages/"))
+		    ("melpa-stable" . "http://stable.melpa.org/packages/")
+		    )
  package-archive-priorities '(("melpa-stable" . 1)))
 
 
@@ -28,59 +29,29 @@
   (package-refresh-contents))
 
 
-;; Define he following variables to remove the compile-log warnings
-;; when defining ido-ubiquitous
-(defvar ido-cur-item nil)
-(defvar ido-default-item nil)
-(defvar ido-cur-list nil)
-(defvar predicate nil)
-(defvar inherit-input-method nil)
-
 ;; The packages you want installed. You can also install these
 ;; manually with M-x package-install
 ;; Add in your own as you wish:
 (defvar my-packages
-  '(;; makes handling lisp expressions much, much easier
-    ;; Cheatsheet: http://www.emacswiki.org/emacs/PareditCheatsheet
+  '(
     paredit
-
-    ;; key bindings and code colorization for Clojure
-    ;; https://github.com/clojure-emacs/clojure-mode
+    company
     clojure-mode
-
-    ;; extra syntax highlighting for clojure
-    clojure-mode-extra-font-locking
-
-    ;; integration with a Clojure REPL
-    ;; https://github.com/clojure-emacs/cider
     cider
-
     clj-refactor
-
-    ;; allow ido usage in as many contexts as possible. see
-    ;; customizations/navigation.el line 23 for a description
-    ;; of ido
     ido-completing-read+
-
-    ;; Enhances M-x to allow easier execution of commands. Provides
-    ;; a filterable list of possible commands in the minibuffer
-    ;; http://www.emacswiki.org/emacs/Smex
     smex
-
-    ;; CSV support
     csv-mode
 
+    ;; For R
+    ;ess
+
     ;; Scala
-    ;; "ENSIME brings Scala and Java IDE-like features to your favourite text editor"
     scala-mode
     sbt-mode
     ensime
-
-    ;; project navigation
     projectile
-
-    ;; colorful parenthesis matching
-    ;rainbow-delimiters
+    rainbow-delimiters
 
     ;; edit html tags like sexps
     tagedit
@@ -88,24 +59,16 @@
     js2-closure
     js2-highlight-vars
 
-    ;; git integration
     magit
-
-    ;; clojure auto-complete
-    ac-cider
-
-    ;; avy visible text
     avy
 
     ;; typesciprt packages
     tss
     tide
-
-    ;; Rust
     rust-mode
-
-    ;; Python
     elpy
+    jedi
+    company-jedi
     ))
 
 ;; On OS X, an Emacs instance started from the graphical user
@@ -122,20 +85,6 @@
 (dolist (p my-packages)
   (when (not (package-installed-p p))
     (package-install p)))
-
-
-;; Place downloaded elisp files in ~/.emacs.d/vendor. You'll then be able
-;; to load them.
-;;
-;; For example, if you download yaml-mode.el to ~/.emacs.d/vendor,
-;; then you can add the following code to this file:
-;;
-;; (require 'yaml-mode)
-;; (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
-;; 
-;; Adding this code will make Emacs enter yaml mode whenever you open
-;; a .yml file
-(add-to-list 'load-path "~/.emacs.d/vendor")
 
 
 ;;;;
@@ -167,14 +116,16 @@
 ;; Hard-to-categorize customizations
 (load "misc.el")
 
-;; For editing lisps
+;; Elisp
 (load "elisp-editing.el")
 
 ;; Scala
 (load "scala-editing.el")
 
-;; Langauage-specific
+;; Clojure
 (load "setup-clojure.el")
+
+;; Javascript
 (load "setup-js.el")
 
 ;; Turn linenum off for certain major modes
@@ -186,7 +137,28 @@
 ;; Python
 (load "setup-python.el")
 
-;; Eslint
-(add-hook 'after-init-hook #'global-flycheck-mode)
+;; Bash auto-complete
+(load "bash-completion.el")
+(require 'bash-completion)
+(bash-completion-setup)
+
 (provide 'init)
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(coffee-tab-width 2)
+ '(package-selected-packages
+   (quote
+    (company-jedi company company-anaconda jedi helm clojure-mode-extra-font-locking clojure-mode cider-eval-sexp-fu pyenv-mode elpy cargo editorconfig-custom-majormode rust-mode tss tide smex scala-mode2 rainbow-delimiters projectile paredit markdown-mode magit js2-highlight-vars js2-closure ensime csv-mode avy adaptive-wrap ac-php-core))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:stipple nil :background "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 150 :width normal :family "Inconsolata")))))
+
+
+
