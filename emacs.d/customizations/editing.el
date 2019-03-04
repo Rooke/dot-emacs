@@ -82,30 +82,25 @@
 
  ;;;;;;;;;; Key re-mappings ;;;;;;;;;;;;;;;;;
 
- (global-set-key [(f2)] 'grep-find) ; the F8 key
- (global-set-key (kbd "C-<return>") 'newline)
 
- (global-set-key (kbd "C-x C-j") 'gdb-many-windows)
+(global-set-key (kbd "C-<return>") 'newline)
 
- (defalias 'gf 'grep-find)
+(global-set-key (kbd "C-x C-j") 'gdb-many-windows)
 
- (global-set-key (kbd "C-<tab>") `semantic-symref-symbol)
+(defalias 'gf 'grep-find)
 
- ;; Bind M-<return> to re-sync autocomplete
- (global-set-key (kbd "M-<return>") 'shell-resync-dirs)
+(global-set-key (kbd "C-<tab>") `semantic-symref-symbol)
 
- (define-key global-map "\C-k" 'kill-complete-line)
- (global-set-key (kbd "C-;") 'kill-line)
- ;;(define-key global-map "\C-h" 'backward-delete-char)
- (defun kill-complete-line ()
-   "Kill the entire current line."
-   (interactive)
-   (beginning-of-line)
-   (kill-line))
-;; Compilation
- (global-set-key (kbd "<f5>") 'compile)
- (define-key global-map "\C-z" 'compile)
- (setq compilation-window-height 8)
+(define-key global-map "\C-k" 'kill-complete-line)
+(global-set-key (kbd "C-;") 'kill-line)
+;;(define-key global-map "\C-h" 'backward-delete-char)
+(defun kill-complete-line ()
+  "Kill the entire current line."
+  (interactive)
+  (beginning-of-line)
+  (kill-line))
+
+
 
 (setq outline-minor-mode-prefix "\C-o")
 
@@ -115,7 +110,6 @@
 (global-set-key (kbd "M-g f") 'avy-goto-line)
 (avy-setup-default)
 
-
 ; 'Universal' (x.org) clipboard
 (setq x-select-enable-clipboard t)
 ;;;;;;;;;;;;; End key remappings ;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -124,30 +118,6 @@
 
 ;Set tabs to display as 4 spaces:
 (setq-default tab-width 4)
-
-(defun my-c-indent-setup()
-  (setq c-basic-offset 4)
-  (setq c-indent-level 4)
-  (setq inden-tabs-mode nil))
-
- (defun my-awk-indent-setup()
-   (setq awk-basic-offset 4)
-   (setq awk-indent-level 4)
-   (setq inden-tabs-mode nil))
-
-(add-hook 'c-mode-hook 'my-c-indent-setup)
-(add-hook 'awk-mode-hook 'my-awk-indent-setup)
-(add-hook 'c++-mode-hook 'my-c-indent-setup)
-
-;JSON formatting
-(setq auto-mode-alist (cons '("\\.json\\'" . js-mode) auto-mode-alist))
-
-; font-lock causes slowdowns with huge lines
-;(setq font-lock-maximum-decoration 1)
-;(setq font-lock-maximum-size 10000)
-;(global-font-lock-mode nil)
-
-;(require 'ensime)
 
 (setq-default bidi-display-reordering nil)
 

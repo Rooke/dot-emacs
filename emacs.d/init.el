@@ -61,6 +61,8 @@
 
     magit
     avy
+    smart-mode-line
+    smart-mode-line-powerline-theme
 
     ;; typesciprt packages
     tss
@@ -144,21 +146,3 @@
 
 (provide 'init)
 ;;; init.el ends here
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(coffee-tab-width 2)
- '(package-selected-packages
-   (quote
-    (company-jedi company company-anaconda jedi helm clojure-mode-extra-font-locking clojure-mode cider-eval-sexp-fu pyenv-mode elpy cargo editorconfig-custom-majormode rust-mode tss tide smex scala-mode2 rainbow-delimiters projectile paredit markdown-mode magit js2-highlight-vars js2-closure ensime csv-mode avy adaptive-wrap ac-php-core))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:stipple nil :background "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 150 :width normal :family "Inconsolata")))))
-
-
-
