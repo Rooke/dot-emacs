@@ -11,10 +11,11 @@
 (setq
  package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                     ("org" . "http://orgmode.org/elpa/")
-;                    ("melpa" . "http://melpa.org/packages/")
-		    ("melpa-stable" . "http://stable.melpa.org/packages/")
+                    ("melpa" . "http://melpa.org/packages/")
+;		    ("melpa-stable" . "http://stable.melpa.org/packages/")
 		    )
  package-archive-priorities '(("melpa-stable" . 1)))
+(add-to-list 'package-pinned-packages '(ess . "melpa-stable") t)
 
 
 ;; Load and activate emacs packages. Do this first so that the
@@ -42,6 +43,7 @@
     ido-completing-read+
     smex
     csv-mode
+    flycheck
 
     ;; For R
     ;ess
@@ -64,10 +66,16 @@
     smart-mode-line
     smart-mode-line-powerline-theme
 
+    ;; Rust
+    rust-mode
+    flycheck-rust
+    company-racer
+    racer
+    cargo
+
     ;; typesciprt packages
     tss
     tide
-    rust-mode
     elpy
     jedi
     company-jedi
@@ -129,6 +137,9 @@
 
 ;; Javascript
 (load "setup-js.el")
+
+;; Rust
+(load "setup-rust.el")
 
 ;; Turn linenum off for certain major modes
 (load "linum-off.el")
