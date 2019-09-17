@@ -15,7 +15,7 @@
 ;		    ("melpa-stable" . "http://stable.melpa.org/packages/")
 		    )
  package-archive-priorities '(("melpa-stable" . 1)))
-(add-to-list 'package-pinned-packages '(ess . "melpa-stable") t)
+(add-to-list 'package-pinned-packages '(ess ensime . "melpa-stable") t)
 
 
 ;; Load and activate emacs packages. Do this first so that the
@@ -45,6 +45,9 @@
     csv-mode
     flycheck
 
+    ;;Cpp
+    company-irony
+
     ;; For R
     ;ess
 
@@ -72,6 +75,9 @@
     company-racer
     racer
     cargo
+
+    ;; Ruby
+    robe
 
     ;; typesciprt packages
     tss
@@ -141,6 +147,9 @@
 ;; Rust
 (load "setup-rust.el")
 
+;; Cpp
+(load "setup-cpp.el")
+
 ;; Turn linenum off for certain major modes
 (load "linum-off.el")
 
@@ -149,6 +158,9 @@
 
 ;; Python
 (load "setup-python.el")
+
+;; Ruby
+(load "setup-rb.el")
 
 ;; Bash auto-complete
 (load "bash-completion.el")
