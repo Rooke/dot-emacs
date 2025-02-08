@@ -15,7 +15,6 @@
 ;		    ("melpa-stable" . "http://stable.melpa.org/packages/")
 		    )
  package-archive-priorities '(("melpa-stable" . 1)))
-(add-to-list 'package-pinned-packages '(ess ensime . "melpa-stable") t)
 
 
 ;; Load and activate emacs packages. Do this first so that the
@@ -44,6 +43,7 @@
     smex
     csv-mode
     flycheck
+    bash-completion
 
     ;;Cpp
     company-irony
@@ -54,7 +54,6 @@
     ;; Scala
     scala-mode
     sbt-mode
-    ensime
     projectile
     rainbow-delimiters
 
@@ -135,9 +134,6 @@
 ;; Elisp
 (load "elisp-editing.el")
 
-;; Scala
-(load "scala-editing.el")
-
 ;; Clojure
 (load "setup-clojure.el")
 
@@ -162,10 +158,7 @@
 ;; Ruby
 (load "setup-rb.el")
 
-;; Bash auto-complete
-(load "bash-completion.el")
-(require 'bash-completion)
-(bash-completion-setup)
+
 
 (provide 'init)
 ;;; init.el ends here
